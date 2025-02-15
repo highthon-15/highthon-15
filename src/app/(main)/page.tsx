@@ -10,7 +10,7 @@ export default function MainPage() {
                     <h2 className="text-4xl font-extrabold">인기 퀴즈</h2>
                 </div>
                 <div className="flex flex-col w-3/5 md:grid-cols-3 gap-4 items-center">
-                    <Link href="/quiz" className="w-full h-full">
+                    <Link href="/quiz/1" className="w-full h-full">
                         <PopularQuizCard ranknumber={1} />
                     </Link>
                     <Link href="/quiz" className="w-full h-full">
