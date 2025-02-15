@@ -5,34 +5,45 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { RankingRow } from '@/components/quiz/RankingRow';
 import { CommentSection } from '@/components/quiz/CommentSection';
-import { rankingData, myRank, nearbyRanks, comments } from '@/data/quizData';
 import { useQuizResultQuery } from '@/hooks/useQuizResultQuery';
 import { usePathname } from 'next/navigation';
-
+import { QuizResult } from '@/hooks/useQuizResultQuery';
+import { useFetchQuizQuery } from '@/hooks/useQuizQuery';
+import { QuizData } from '@/types/quiz';
 
 export default function QuizResultPage() {
   const pathname = usePathname();
   const quizId = Number(pathname.split('/').pop());
+  
+  // 두 쿼리를 동시에 가져오도록 수정
+  const { data: quizDataFetch, error: quizDataError, isLoading: quizDataLoading } = useFetchQuizQuery(quizId);
   const { data, error, isLoading } = useQuizResultQuery(quizId);
 
-  if (error) return (
+  // 로딩 상태 통합
+  if (isLoading || quizDataLoading) return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+    </div>
+  );
+
+  // 에러 상태 통합
+  if (error || quizDataError) return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-2xl font-bold text-red-500 mb-4">오류가 발생했습니다</h1>
       <p className="text-gray-600">잠시 후 다시 시도해주세요</p>
     </div>
   );
 
-  if (isLoading) return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
-    </div>
-  );
+  if (!data || !quizDataFetch) return null;
 
-  const { ranking, name, speed, correctAnswersCount } = data;
+  const quizResult: QuizResult = data;
+  const { quizResponse, similarQuizzes, myRanking, rankings } = quizDataFetch;
+
+  console.log(quizResponse);
 
   return (
     <div className="container mx-auto px-4 py-8 flex flex-col gap-8">
-      <div className="flex items-start gap-12">
+      <div className="flex items-start gap-12"> 
         {/* 퀴즈 이미지 */}
         <div className="w-[400px] h-[400px] rounded-2xl overflow-hidden">
           <div className="w-full h-full bg-gray-200" />
@@ -40,28 +51,16 @@ export default function QuizResultPage() {
 
         {/* 순위표 */}
         <div className="flex-1 flex flex-col">
-          <h1 className="text-4xl font-bold mb-6">케이크 퀴즈</h1>
+          <h1 className="text-4xl font-bold mb-6">{quizResponse.title}</h1>
           <div className="bg-white rounded-xl border divide-y">
-            {/* 상위 랭킹 */}
-            {rankingData.map((item) => (
-              <RankingRow key={item.rank} item={item} />
-            ))}
-            
-            {/* 구분선 */}
-            <div className="py-2 text-center text-gray-500">
-              <span className="inline-block w-1 h-1 bg-gray-300 rounded-full mx-1"></span>
-              <span className="inline-block w-1 h-1 bg-gray-300 rounded-full mx-1"></span>
-              <span className="inline-block w-1 h-1 bg-gray-300 rounded-full mx-1"></span>
+            <div className="p-4">
+              <h2 className="text-2xl font-bold">내 결과</h2>
+              <div className="mt-4">
+                <p className="text-lg">순위: {quizResult.ranking}위</p>
+                <p className="text-lg">정답 개수: {quizResult.correctAnswersCount}개</p>
+                <p className="text-lg">소요 시간: {quizResult.speed}</p>
+              </div>
             </div>
-
-            {/* 주변 랭킹 */}
-            {nearbyRanks.map((item) => (
-              <RankingRow 
-                key={item.rank} 
-                item={item} 
-                isHighlighted={item.rank === myRank.rank}
-              />
-            ))}
           </div>
         </div>
       </div>
@@ -80,12 +79,14 @@ export default function QuizResultPage() {
       </div>
 
       {/* 확인 버튼 */}
-      <button className="w-full py-3 bg-blue-500 text-white rounded-lg text-lg font-medium">
-        확인
-      </button>
+      <Link href="/" className="w-full">
+        <button className="w-full py-3 bg-blue-500 text-white rounded-lg text-lg font-medium">
+          다른 퀴즈 풀기
+        </button>
+      </Link>
 
       {/* 댓글 섹션 */}
-      <CommentSection comments={comments} />
+      <CommentSection comments={[]} />
 
       {/* 비슷한 퀴즈 */}
       <div className="mt-12">
@@ -108,4 +109,4 @@ export default function QuizResultPage() {
       </div>
     </div>
   );
-} 
+}
