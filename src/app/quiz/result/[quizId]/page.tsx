@@ -6,8 +6,30 @@ import Link from 'next/link';
 import { RankingRow } from '@/components/quiz/RankingRow';
 import { CommentSection } from '@/components/quiz/CommentSection';
 import { rankingData, myRank, nearbyRanks, comments } from '@/data/quizData';
+import { useQuizResultQuery } from '@/hooks/useQuizResultQuery';
+import { usePathname } from 'next/navigation';
+
 
 export default function QuizResultPage() {
+  const pathname = usePathname();
+  const quizId = Number(pathname.split('/').pop());
+  const { data, error, isLoading } = useQuizResultQuery(quizId);
+
+  if (error) return (
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-2xl font-bold text-red-500 mb-4">오류가 발생했습니다</h1>
+      <p className="text-gray-600">잠시 후 다시 시도해주세요</p>
+    </div>
+  );
+
+  if (isLoading) return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
+    </div>
+  );
+
+  const { ranking, name, speed, correctAnswersCount } = data;
+
   return (
     <div className="container mx-auto px-4 py-8 flex flex-col gap-8">
       <div className="flex items-start gap-12">
