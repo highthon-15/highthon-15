@@ -5,6 +5,7 @@ import SessionWrapper from './SessionWrapper';
 import { Header } from '@/components/Header';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import { usePathname } from 'next/navigation';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -23,12 +24,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  console.log(pathname);
+  const showHeader = !pathname.startsWith('/quiz/question/');
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <QueryClientProvider client={queryClient}>
-          <Header />
+          {showHeader && <Header />}
           <SessionWrapper>{children}</SessionWrapper>
         </QueryClientProvider>
       </body>
