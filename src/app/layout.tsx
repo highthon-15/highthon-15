@@ -3,7 +3,7 @@
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import SessionWrapper from './SessionWrapper';
 import { Header } from '@/components/Header';
-import {Geist, Geist_Mono} from 'next/font/google';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
 const geistSans = Geist({
