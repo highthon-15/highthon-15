@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {SquareChevronRight} from 'lucide-react';
 import {useFetchQuestionsQuery} from '@/hooks/useFetchQuestionsQuery';
 import {useSubmitAnswerMutation} from '@/hooks/useSubmitAnswerMutation';
@@ -57,7 +57,7 @@ export default function Page() {
   const currentQuestion = questions[currentQuestionIndex];
 
   // 첫 번째 문제 시작 시간 기록
-  React.useEffect(() => {
+  useEffect(() => {
     setStartTime(Date.now());
   }, [currentQuestionIndex]);
 

@@ -1,7 +1,8 @@
+import { apiUrl } from "@/components/constants/config";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchQuestions = async (quizId: number) => {
-  const res = await fetch(`http://192.168.0.73:8080/question/list/${quizId}`);
+  const res = await fetch(`${apiUrl}/question/list/${quizId}`);
   if (!res.ok) {
     throw new Error('Error fetching questions');
   }

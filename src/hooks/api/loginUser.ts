@@ -1,10 +1,12 @@
+import { apiUrl } from "@/components/constants/config";
+
 export interface UserInfo {
     id: string;
     name: string | null;
 }
 
 export async function loginUser({ id, name }: UserInfo) {
-  const response = await fetch(`http://192.168.0.73:8080/user/login`, {
+  const response = await fetch(`${apiUrl}/user/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

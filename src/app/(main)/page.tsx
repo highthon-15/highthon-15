@@ -19,7 +19,7 @@ export default function MainPage() {
           <h2 className="text-4xl font-extrabold">인기 퀴즈</h2>
         </div>
         <div className="flex flex-col w-3/5 md:grid-cols-3 gap-4 items-center">
-          {popularQuiz?.map((quiz: any) => (
+          {recommendedQuiz?.map((quiz: any) => (
             <Link
               key={quiz.id}
               href={`/quiz/${quiz.id}`}
@@ -40,7 +40,7 @@ export default function MainPage() {
         </div>
         <div className="flex w-full h-full gap-4 items-center justify-center">
           <div className="grid grid-cols-3 w-3/6 h-full gap-4 items-center justify-center">
-            {recommendedQuiz?.map((quiz: any) => (
+            {popularQuiz?.map((quiz: any) => (
               <Link
                 key={quiz.id}
                 href={`/quiz/${quiz.id}`}

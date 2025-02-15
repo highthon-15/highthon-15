@@ -1,3 +1,4 @@
+import { apiUrl } from '@/components/constants/config';
 import {useMutation} from '@tanstack/react-query';
 
 export interface Props {
@@ -8,7 +9,7 @@ export interface Props {
 
 const submitAnswer = async ({quizId, speed, correctAnswersCount}: Props) => {
   const res = await fetch(
-    `http://192.168.0.73:8080/question/result/${quizId}`,
+    `${apiUrl}/question/result/${quizId}`,
     {
       method: 'POST',
       body: JSON.stringify({speed, correctAnswersCount}),
