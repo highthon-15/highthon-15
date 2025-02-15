@@ -1,27 +1,40 @@
 import { apiUrl } from '@/components/constants/config';
-import {useMutation} from '@tanstack/react-query';
+import { TOKEN_KEY } from '@/components/constants/key';
+import { useMutation } from '@tanstack/react-query';
 
 export interface Props {
   quizId: number;
   speed: string;
   correctAnswersCount: number;
-}   
+}
 
-const submitAnswer = async ({quizId, speed, correctAnswersCount}: Props) => {
-  const res = await fetch(
-    `${apiUrl}/question/result/${quizId}`,
-    {
-      method: 'POST',
-      body: JSON.stringify({speed, correctAnswersCount}),
-      headers: {'Content-Type': 'application/json'},
-    },
-  );
+const submitAnswer = async ({ quizId, speed, correctAnswersCount }: Props) => {
+  const token = localStorage.getItem(TOKEN_KEY);
+
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const res = await fetch(`${apiUrl}/question/result/${quizId}`, {
+    method: 'POST',
+    body: JSON.stringify({ speed, correctAnswersCount }),
+    headers: headers,
+  });
 
   if (!res.ok) {
     throw new Error('Error submitting result');
   }
 
-  return res.json();
+  const text = await res.text();
+  if (text) {
+    return JSON.parse(text);
+  } else {
+    return {};
+  }
 };
 
 export function useSubmitAnswerMutation() {
