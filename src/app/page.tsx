@@ -1,6 +1,35 @@
-import Image from "next/image";
+'use client';
 
-export default function Home() {
+import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+import Image from "next/image";
+import { useLoginUserMutation } from "@/hooks/useLoginUserMutation";
+
+export default function Page() {
+  const { data: session } = useSession();
+  
+  const { mutate } = useLoginUserMutation({
+    onSuccess: (data) => {
+      console.log("로그인 성공:", data);
+    },
+    onError: (error) => {
+      console.error("로그인 실패:", error);
+    }
+  });
+
+  useEffect(() => {
+    if (session?.user) {
+      const userId = session.user.id;
+      const userName = session.user.name;
+
+      mutate({ id: userId, name: userName });
+    }
+  }, [session, mutate]);
+
+  if (!session) {
+    return <div>로그인 후 사용 가능합니다.</div>;
+  }
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
