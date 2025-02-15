@@ -1,3 +1,5 @@
+'use client';
+
 import { QuizHistory } from '@/types/user';
 import Link from 'next/link';
 import Image from 'next/image';

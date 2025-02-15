@@ -1,3 +1,5 @@
+'use client';
+
 import React, {useState} from 'react';
 import {SquareChevronRight} from 'lucide-react';
 import {useFetchQuestionsQuery} from '@/hooks/useFetchQuestionsQuery';
