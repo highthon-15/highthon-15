@@ -23,7 +23,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className=" top-0 z-50 w-full bg-background/95 backdrop-blur flex">
+    <header className="top-0 z-50 w-full bg-background/95 backdrop-blur flex">
       <div className="flex flex-col items-center justify-between mx-auto px-4">
         {/* 검색 바 */}
         <div className="flex items-center justify-center rounded-md border-2 w-full shadow-md">
@@ -37,7 +37,7 @@ const Header = () => {
         <nav className="flex items-center justify-center overflow-x-auto">
           <ul className="flex items-center space-x-1 lg:space-x-6 py-4">
             {NAVIGATION_ITEMS.map((item) => (
-              <li key={item.name}> 
+              <li key={item.name}>
                 <Link
                   href={item.href}
                   className={`
@@ -69,4 +69,4 @@ export default function MainLayout({ children }: MainLayoutProps) {
       </main>
     </div>
   );
-} 
+}
