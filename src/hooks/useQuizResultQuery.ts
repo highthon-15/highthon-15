@@ -12,7 +12,7 @@ export interface QuizResult {
 
 const getQuizResult = async (quizId: number) => {
 
-  const token = localStorage.getItem(TOKEN_KEY); // JWT 토큰 가져오기
+  const token = localStorage.getItem(TOKEN_KEY);
   const headers = {
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${token}`,

@@ -1,15 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { SquareChevronRight } from 'lucide-react';
-import { useFetchQuestionsQuery } from '@/hooks/useFetchQuestionsQuery';
-import { useSubmitAnswerMutation } from '@/hooks/useSubmitAnswerMutation';
-import { useRouter } from 'next/navigation';
+import {useState, useEffect} from 'react';
+import {SquareChevronRight} from 'lucide-react';
+import {useFetchQuestionsQuery} from '@/hooks/useFetchQuestionsQuery';
+import {useSubmitAnswerMutation} from '@/hooks/useSubmitAnswerMutation';
+import {useRouter} from 'next/navigation';
 
 export default function Page() {
   const quizId = 1;
-  const { data: questions, isLoading, error } = useFetchQuestionsQuery(quizId);
-  const { mutate } = useSubmitAnswerMutation();
+  const {data: questions, isLoading, error} = useFetchQuestionsQuery(quizId);
+  const {mutate} = useSubmitAnswerMutation();
   const router = useRouter();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -29,9 +29,8 @@ export default function Page() {
     const endTime = Date.now();
     const timeTaken = endTime - (startTime || endTime);
 
-    // speed 계산 후 바로 사용
     const calculatedSpeed = (timeTaken / 1000).toFixed(2);
-    setSpeed(calculatedSpeed); // speed 값 갱신
+    setSpeed(calculatedSpeed);
 
     let correctCount = 0;
     userAnswers.forEach((answer, index) => {
@@ -41,9 +40,8 @@ export default function Page() {
     });
     setCorrectAnswersCount(correctCount);
 
-    // 서버로 제출
     mutate(
-      { quizId, speed: calculatedSpeed, correctAnswersCount },
+      {quizId, speed: calculatedSpeed, correctAnswersCount},
       {
         onSettled: () => {
           setIsSubmitting(false);
@@ -62,6 +60,8 @@ export default function Page() {
   const handleNextQuestion = () => {
     if (currentQuestionIndex + 1 < (questions?.length || 0)) {
       setCurrentQuestionIndex(prev => prev + 1);
+    } else {
+      handleSubmitAll();
     }
   };
 
@@ -94,11 +94,11 @@ export default function Page() {
       </div>
 
       {/* 문제 이미지 */}
-      <div className="mt-8 w-full max-w-[800px] h-[500px] rounded-xl overflow-hidden shadow-lg flex justify-center items-center">
+      <div className="mt-8 w-full max-w-[800px] h-[500px] rounded-xl overflow-hidden shadow-lg flex justify-center items-center bg-gray-100">
         <img
           src={currentQuestion.questionImage}
           alt="문제 이미지"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       </div>
 
