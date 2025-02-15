@@ -87,7 +87,7 @@ export default function Page() {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="flex flex-col items-center justify-start min-h-screen px-4 overflow-hidden">
+    <div className="flex flex-col items-center mt-16 justify-start min-h-screen px-4 overflow-hidden">
       <div className="absolute top-8 left-8 px-6 py-3 bg-white shadow-md rounded-lg text-2xl font-semibold">
         {currentQuestionIndex + 1}{' '}
         <span className="text-gray-500">/ {questions.length}</span>
