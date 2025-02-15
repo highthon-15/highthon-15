@@ -13,9 +13,9 @@ const PopularQuizCardWithRankNumber = ({ ranknumber }: { ranknumber: number }) =
 
 const PopularQuizCardWidget = () => {
     return (
-        <div className="flex w-full h-full shadow-xl rounded-xl">
+        <div className="flex w-full h-full shadow-xl rounded-3xl">
             {/* 대표 사진 */}
-            <div className="flex flex-col w-1/4 h-full bg-red-500">
+            <div className="flex flex-col w-1/4 h-full bg-red-500 rounded-l-3xl">
             </div>
             {/* 퀴즈 정보 */}
             <div className="flex flex-col w-3/4 h-full">
