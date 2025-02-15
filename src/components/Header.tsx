@@ -18,7 +18,7 @@ export function Header() {
 
       <div className="flex items-center justify-center p-4 my-7">
         <Link href="/">
-          <span className="font-extrabold text-6xl">프로젝트 이름</span>
+          <span className="font-extrabold text-6xl">얼마나 아세요?</span>
         </Link>
       </div>
 
