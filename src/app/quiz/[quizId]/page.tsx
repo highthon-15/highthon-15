@@ -1,6 +1,7 @@
 'use client'
 
 import { useFetchQuizQuery } from '@/hooks/useQuizQuery';
+import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import React from 'react';
 
@@ -58,7 +59,7 @@ export default function QuizPage() {
         <h2 className="text-2xl font-bold mb-6">비슷한 퀴즈</h2>
         <div className="grid grid-cols-3 gap-6">
           {similarQuizzes.map((quiz: any) => (
-            <div key={quiz.id} className="flex gap-4 p-4 border rounded-xl hover:shadow-lg transition-shadow">
+            <Link key={quiz.id} href={`/quiz/${quiz.id}`} className="flex gap-4 p-4 border rounded-xl hover:shadow-lg transition-shadow">
               <div className="w-32 h-32 bg-gray-200 rounded-lg">
                 <img src={quiz.thumbnail} alt="비슷한 퀴즈 이미지" className="w-full h-full object-cover rounded-lg" />
               </div>
@@ -72,7 +73,7 @@ export default function QuizPage() {
                   <span className="mt-2 px-3 py-1 rounded-full border border-gray-300 w-fit">{quiz.tag}</span>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

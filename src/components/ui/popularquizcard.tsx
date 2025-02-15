@@ -34,7 +34,7 @@ const PopularQuizCardWidget = ({ quiz }: { quiz: Quiz }) => {
         {/* 퀴즈 별점 */}
         <div className="flex flex-row w-full h-3/4 space-x-2 px-3 py-2">
           <StarIcon className="w-10 h-10" />
-          <h3 className="text-2xl font-bold">{quiz.rating}</h3>
+          <h3 className="text-2xl mt-1.5 font-bold">{quiz.rating}</h3>
         </div>
         {/* 퀴즈 태그 */}
         <div className="flex flex-row w-full h-3/6 items-center">
