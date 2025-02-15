@@ -2,7 +2,7 @@ import { StarIcon } from "lucide-react";
 
 const PopularQuizCardWithRankNumber = ({ ranknumber }: { ranknumber: number }) => {
     return (
-        <div className="h-60 w-3/5 bg-white flex flex-row items-center">
+        <div className="h-60 w-full bg-white flex flex-row items-center">
             <div className="flex flex-row items-center w-1/12 justify-center">
                 <span className="text-6xl font-bold">{ranknumber}</span>
             </div>
