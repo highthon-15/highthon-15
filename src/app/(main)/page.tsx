@@ -29,12 +29,24 @@ export default function MainPage() {
                 </div>
                 <div className="flex w-full h-full gap-4 items-center justify-center">
                     <div className="grid grid-cols-3 w-3/6 h-full gap-4 items-center justify-center">
-                        <QuizCard />
-                        <QuizCard />
-                        <QuizCard />
-                        <QuizCard />
-                        <QuizCard />
-                        <QuizCard />
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link> 
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link>
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link>
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link>
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link>
+                        <Link href="/quiz" className="w-full h-full">
+                            <QuizCard />
+                        </Link>
                     </div>
                 </div>
             </div>
