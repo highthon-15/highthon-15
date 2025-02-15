@@ -23,15 +23,14 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur flex">
+    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur flex">
       <div className="flex flex-col items-center justify-between mx-auto px-4">
         {/* 검색 바 */}
-        <div className="flex items-center justify-center rounded-md border-2 w-full">
-          <SearchIcon className="w-4 h-4 ml-4 mr-3" />
+        <div className="flex items-center justify-center rounded-md border-2 w-full shadow-md">
+          <SearchIcon className="w-7 h-7 ml-4 mr-3" />
           <input
             type="text"
-            placeholder="검색"
-            className="w-full p-2 rounded-md text-black"
+            className="w-full p-3 text-black text-2xl"
           />
         </div>
         {/* 네비게이션 메뉴 (카테고리) */}
@@ -42,7 +41,7 @@ const Header = () => {
                 <Link
                   href={item.href}
                   className={`
-                    px-3 py-2 text-sm lg:text-lg font-medium rounded-md 
+                    px-3 py-2 mx-6 text-2xl font-medium rounded-md 
                     transition-colors duration-200
                     ${pathname === item.href
                       ? 'bg-blue-100 text-blue-700'

@@ -23,9 +23,9 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full items-center backdrop-blur">
       {/* 프로젝트 이름 */}
-      <div className="flex items-center justify-center p-4">
+      <div className="flex items-center justify-center p-4 my-7">
         <Link href="/">
-          <span className="font-bold text-4xl">프로젝트 이름</span>
+          <span className="font-extrabold text-6xl">프로젝트 이름</span>
         </Link>
       </div>
     </header>
