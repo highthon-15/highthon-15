@@ -1,7 +1,17 @@
 import { StarIcon } from "lucide-react";
 
-// todo 데이터 타입 만들어서 참조필요
-export default function PopularQuizCard() {
+const PopularQuizCardWithRankNumber = ({ ranknumber }: { ranknumber: number }) => {
+    return (
+        <div className="h-60 w-3/5 bg-white flex flex-row items-center">
+            <div className="flex flex-row items-center w-1/12 justify-center">
+                <span className="text-6xl font-bold">{ranknumber}</span>
+            </div>
+            <PopularQuizCardWidget />
+        </div>
+    )
+}
+
+const PopularQuizCardWidget = () => {
     return (
         <div className="flex w-full h-full shadow-xl rounded-xl">
             {/* 대표 사진 */}
@@ -26,5 +36,13 @@ export default function PopularQuizCard() {
                 </div>
             </div>
         </div>
+    )
+}
+
+
+// todo 데이터 타입 만들어서 참조필요
+export default function PopularQuizCard({ ranknumber }: { ranknumber: number }) {
+    return (
+        <PopularQuizCardWithRankNumber ranknumber={ranknumber} />
     )
 }
