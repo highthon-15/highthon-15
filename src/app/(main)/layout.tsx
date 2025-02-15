@@ -23,7 +23,7 @@ const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur flex">
+    <header className=" top-0 z-50 w-full bg-background/95 backdrop-blur flex">
       <div className="flex flex-col items-center justify-between mx-auto px-4">
         {/* 검색 바 */}
         <div className="flex items-center justify-center rounded-md border-2 w-full shadow-md">

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 // 헤더
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 w-full items-center backdrop-blur">
+    <header className="top-0 z-50 w-full items-center backdrop-blur">
       {/* 프로젝트 이름 */}
       <div className="flex items-center justify-center p-4 my-7">
         <Link href="/">
