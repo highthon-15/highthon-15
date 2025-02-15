@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,7 +24,9 @@ const Header = () => {
     <header className="sticky top-0 z-50 w-full items-center backdrop-blur">
       {/* 프로젝트 이름 */}
       <div className="flex items-center justify-center p-4">
-        <span className="font-bold text-4xl">프로젝트 이름</span>
+        <Link href="/">
+          <span className="font-bold text-4xl">프로젝트 이름</span>
+        </Link>
       </div>
     </header>
   );
