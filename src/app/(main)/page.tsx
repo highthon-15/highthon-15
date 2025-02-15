@@ -47,9 +47,6 @@ export default function MainPage() {
                         <Link href="/quiz" className="w-full h-full">
                             <QuizCard />
                         </Link>
-                        <Link href="/quiz" className="w-full h-full">
-                            <QuizCard />
-                        </Link>
                     </div>
                 </div>
             </div>
