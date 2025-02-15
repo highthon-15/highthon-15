@@ -4,23 +4,34 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+interface Comment {
+  user: string;
+  date: string;
+  content: string;
+}
+
 // 임시 순위 데이터
 const rankingData = [
   { rank: 1, name: '김영철', time: '00:07:21', score: '10/10' },
   { rank: 2, name: '김진수', time: '00:08:03', score: '10/10' },
-  { rank: 3, name: '최영미', time: '00:08:57', score: '10/10' },
+  { rank: 3, name: '황하미', time: '00:08:57', score: '10/10' },
+  { rank: 4, name: '이영명', time: '00:08:60', score: '10/10' },
 ];
 
-const myRank = { rank: 3719, name: '나영진', time: '00:40:97', score: '10/10' };
+const myRank = { rank: 3723, name: '나영진', time: '00:40:97', score: '10/10' };
 
 const nearbyRanks = [
-  { rank: 3718, name: '이영명', time: '00:40:92', score: '10/10' },
+  { rank: 3720, name: '최영범', time: '00:40:38', score: '10/10' },
+  { rank: 3721, name: '김미나', time: '00:40:92', score: '10/10' },
+  { rank: 3722, name: '차우현', time: '00:40:95', score: '10/10' },
   myRank,
-  { rank: 3720, name: '최영범', time: '00:41:30', score: '10/10' },
+  { rank: 3724, name: '김준진', time: '00:41:22', score: '10/10' },
+  { rank: 3725, name: '임민진', time: '00:42:92', score: '10/10' },
+  { rank: 3726, name: '최영범', time: '00:42:99', score: '10/10' },
 ];
 
 // 임시 댓글 데이터
-const comments = [
+const comments: Comment[] = [
   { user: '김영철', date: '2025/02/15', content: '내가 일등 ㅋ' },
   { user: '주현아', date: '2025/02/13', content: '케이크 맛있겠다..' },
   { user: '김진진', date: '2025/02/12', content: '시은 돈있겠다 ㅋ' },
@@ -30,14 +41,16 @@ const comments = [
 
 const RankingRow = ({ item, isHighlighted = false }: { item: typeof myRank, isHighlighted?: boolean }) => (
   <div 
-    className={`flex items-center py-3 px-4 ${
+    className={`flex items-center h-10 px-4 ${
       isHighlighted ? 'bg-blue-50' : ''
     }`}
   >
     <span className="w-12 text-center">{item.rank}</span>
     <div className="w-6 h-6 bg-gray-200 rounded-full mr-2" />
     <span className="flex-1">{item.name}</span>
-    <span className="w-16 text-center text-gray-600">{item.time}</span>
+    <span className="w-20 text-center text-gray-600">속도</span>
+    <span className="w-20 text-center text-gray-600">{item.time}</span>
+    <span className="w-16 text-center text-gray-600">개수</span>
     <span className="w-16 text-center text-gray-600">{item.score}</span>
   </div>
 );
@@ -87,7 +100,7 @@ export default function QuizResultPage() {
       <div className="mt-4">
         <h2 className="text-2xl font-bold mb-2">평점</h2>
         <div className="flex items-center gap-2">
-          <div className="flex gap-1">
+          <div className="flex">
             {[1, 2, 3, 4, 5].map((star) => (
               <span key={star} className="text-3xl text-gray-300">☆</span>
             ))}
@@ -95,6 +108,11 @@ export default function QuizResultPage() {
           <span className="text-3xl ml-2">0.0</span>
         </div>
       </div>
+
+      {/* 확인 버튼 */}
+      <button className="w-full py-3 bg-blue-500 text-white rounded-lg text-lg font-medium">
+        확인
+      </button>
 
       {/* 댓글 섹션 */}
       <div className="mt-8">
