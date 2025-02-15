@@ -1,6 +1,11 @@
+'use client'
+
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 export default function QuizPage() {
+  const router = useRouter();
+  
   return (
     <div className="container mx-auto px-4 py-8 flex flex-col gap-8">
       {/* 퀴즈 제목과 평점 */}
@@ -32,7 +37,7 @@ export default function QuizPage() {
           </p>
           
           {/* 시작하기 버튼 */}
-          <button className="w-1/2 mt-8 px-8 py-4 bg-white text-black border-2 border-black rounded-xl text-xl font-bold hover:bg-gray-800 transition-colors">
+          <button onClick={() => router.push("question/1")} className="w-1/2 mt-8 px-8 py-4 bg-white text-black border-2 border-black rounded-xl text-xl font-bold hover:bg-gray-800 transition-colors">
             시작
           </button>
         </div>
