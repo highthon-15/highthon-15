@@ -1,62 +1,53 @@
-'use client'
+'use client';
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card';
+import React, {useEffect, useState} from 'react';
+import {usePathname} from 'next/navigation';
+import {apiUrl} from '@/components/constants/config';
 
-export default function QuizPage() {
-  const searchParams = useSearchParams();
-  const category = searchParams?.get('category');
-
+export default function Page() {
+  const pathname = usePathname();
+  const tag = pathname.split('/')[1];
   const [quizzes, setQuizzes] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (category) {
-      fetch(`/api/quiz/${category}`)
-        .then((response) => response.json())
-        .then((data) => {
+    if (tag) {
+      fetch(`${apiUrl}/doc/${tag}`)
+        .then(response => response.json())
+        .then(data => {
           setQuizzes(data);
           setLoading(false);
         })
-        .catch((error) => {
+        .catch(error => {
           console.error('퀴즈를 가져오는 중 오류가 발생했습니다:', error);
           setLoading(false);
         });
     }
-  }, [category]);
+  }, [tag]);
+
+  if (loading) return <div>로딩 중...</div>;
 
   return (
-    <div>
-      <h1>{category} 카테고리 퀴즈</h1>
-      {
-      quizzes.length === 0 ? (
-        <p>이 카테고리에는 퀴즈가 없습니다.</p>
-      ) : (
-        quizzes.map((quiz) => (
-          <Card key={quiz.id} className="mb-6">
-            <CardHeader>
-              <CardTitle>{quiz.title}</CardTitle>
-              <CardDescription>{quiz.description}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>{quiz.explanation}</p>
-            </CardContent>
-            <CardFooter>
-              <button className="px-4 py-2 bg-blue-500 text-white rounded">
-                퀴즈 시작
-              </button>
-            </CardFooter>
-          </Card>
-        ))
-      )}
+    <div className="container mx-auto px-4 py-8">
+      <section className="text-center mb-16">
+        <h1 className="text-4xl font-bold mb-4">{tag} 메인 페이지</h1>
+        <p className="text-xl text-gray-600">
+          {tag} 카테고리 퀴즈에 오신 것을 환영합니다.
+        </p>
+      </section>
+
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {Array.isArray(quizzes) ? (
+          quizzes.map(quiz => (
+            <div key={quiz.id} className="p-6 bg-white rounded-lg shadow-md">
+              <h2 className="text-xl font-semibold mb-4">{quiz.title}</h2>
+              <p className="text-gray-600">{quiz.description}</p>
+            </div>
+          ))
+        ) : (
+          <p>이 카테고리에는 퀴즈가 없습니다.</p>
+        )}
+      </section>
     </div>
   );
-}
+};
