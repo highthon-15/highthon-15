@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-
 import { useRouter } from "next/navigation";
 import { UserInfo, loginUser } from "./api/loginUser";
 
@@ -20,7 +19,12 @@ export function useLoginUserMutation({
       return loginUser(userData);
     },
     onSuccess: async (data) => {
+      if (data?.accessToken) {
+        localStorage.setItem("accessToken", data.accessToken);
+      }
+      
       await queryClient.invalidateQueries({ queryKey: ["users"] });
+
       if (onSuccess) onSuccess(data);
       router.push("/");
     },

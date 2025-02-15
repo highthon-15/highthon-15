@@ -9,12 +9,15 @@ export async function loginUser({ id, name }: UserInfo) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ id, name }),
+    body: JSON.stringify({
+      id: Number(id),
+      name,
+    }),
   });
 
   if (!response.ok) {
     const errorData = await response.json();
-    console.error("error: ", errorData)
+    console.error("error: ", errorData);
     throw new Error("사용자 로그인에 실패했습니다.");
   }
 
