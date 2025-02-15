@@ -47,7 +47,7 @@ export default function Page() {
       {
         onSettled: () => {
           setIsSubmitting(false);
-          router.push(`/result/${quizId}`);
+          router.push(`/quiz/result/${quizId}`);
         },
       },
     );
