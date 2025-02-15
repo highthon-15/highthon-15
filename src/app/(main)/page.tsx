@@ -1,6 +1,6 @@
 import QuizCard from "@/components/ui/quizcard";
 import PopularQuizCard from "@/components/ui/popularquizcard";
-
+import Link from "next/link";
 export default function MainPage() {
     return (
         <div className="flex w-full h-full flex-col mx-auto py-8 items-center">
@@ -9,10 +9,16 @@ export default function MainPage() {
                 <div className="flex flex-row w-3/6 justify-between">
                     <h2 className="text-4xl font-extrabold">인기 퀴즈</h2>
                 </div>
-                <div className="flex flex-col w-full md:grid-cols-3 gap-4 items-center">
-                    <PopularQuizCard ranknumber={1} />
-                    <PopularQuizCard ranknumber={2} />
-                    <PopularQuizCard ranknumber={3} />
+                <div className="flex flex-col w-3/5 md:grid-cols-3 gap-4 items-center">
+                    <Link href="/quiz" className="w-full h-full">
+                        <PopularQuizCard ranknumber={1} />
+                    </Link>
+                    <Link href="/quiz" className="w-full h-full">
+                        <PopularQuizCard ranknumber={2} />
+                    </Link>
+                    <Link href="/quiz" className="w-full h-full">
+                        <PopularQuizCard ranknumber={3} />
+                    </Link>
                 </div>
             </div>
 
