@@ -108,7 +108,7 @@ export default function Page() {
           type="text"
           value={userAnswers[currentQuestionIndex] || ''}
           onChange={e => handleAnswerChange(e.target.value)}
-          onKeyDown={handleKeyDown} // Enter 키 이벤트 추가
+          onKeyDown={handleKeyDown}
           placeholder="정답을 입력하세요"
           className="w-3/4 px-6 py-4 text-center border-2 border-gray-300 rounded-xl text-lg focus:outline-none focus:ring-2 focus:ring-gray-500"
         />
