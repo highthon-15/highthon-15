@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 // 헤더
 const Header = () => {
   return (
-    <header className="sticky top-0 z-50 w-full items-center border-b bg-background/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full items-center backdrop-blur">
       <div className="flex items-center justify-center p-4">
         <span className="font-bold text-4xl">프로젝트 이름</span>
       </div>
