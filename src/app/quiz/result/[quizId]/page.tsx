@@ -112,24 +112,23 @@ export default function QuizResultPage() {
       <CommentSection comments={[]} />
 
       {/* 비슷한 퀴즈 */}
-      <div className="mt-12">
-        <h2 className="text-2xl font-bold mb-4">비슷한 퀴즈</h2>
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold mb-6">비슷한 퀴즈</h2>
         <div className="grid grid-cols-3 gap-6">
-          {[1, 2, 3].map(index => (
-            <Link
-              href="/quiz"
-              key={index}
-              className="flex gap-4 p-4 border rounded-xl hover:shadow-lg transition-shadow">
-              <div className="w-24 h-24 bg-gray-200 rounded-lg" />
+          {similarQuizzes.map((quiz: any) => (
+            <Link key={quiz.id} href={`/quiz/${quiz.id}`} className="flex gap-4 p-4 border rounded-xl hover:shadow-lg transition-shadow">
+              <div className="w-32 h-32 bg-gray-200 rounded-lg">
+                <img src={quiz.thumbnail} alt="비슷한 퀴즈 이미지" className="w-full h-full object-cover rounded-lg" />
+              </div>
               <div className="flex flex-col">
-                <h3 className="text-xl font-bold">과자 퀴즈</h3>
+                <h3 className="text-xl font-bold">{quiz.title}</h3>
                 <div className="flex items-center gap-1 mt-1">
                   <span>★</span>
-                  <span>4.8</span>
+                  <span>{quiz.rating}</span>
                 </div>
-                <span className="mt-auto px-3 py-1 rounded-full border border-gray-300 w-fit">
-                  음식
-                </span>
+                <div className="flex flex-row w-full h-full items-end">
+                  <span className="mt-2 px-3 py-1 rounded-full border border-gray-300 w-fit">{quiz.tag}</span>
+                </div>
               </div>
             </Link>
           ))}
