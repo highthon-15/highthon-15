@@ -10,11 +10,9 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen space-y-4">
-      <h1 className="text-2xl font-semibold">로그인</h1>
-
       <Button
         onClick={handleKakaoLogin}
-        className="flex items-center justify-center bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg w-60">
+        className="flex items-center justify-center bg-yellow-400 text-black font-bold py-2 px-6 rounded-lg w-1/4">
         카카오로 로그인하기
       </Button>
     </div>

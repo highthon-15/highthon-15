@@ -4,6 +4,7 @@ import {UserProfile} from '@/types/user';
 import Image from 'next/image';
 import {useRouter} from 'next/navigation';
 import {TOKEN_KEY} from '../constants/key';
+import {useEffect, useState} from 'react';
 
 interface ProfileWidgetProps {
   profile: UserProfile;
@@ -11,9 +12,11 @@ interface ProfileWidgetProps {
 
 export const ProfileWidget = ({profile}: ProfileWidgetProps) => {
   const router = useRouter();
+  const [_, setToken] = useState<string | null>(null);
 
   const handleLogout = () => {
     localStorage.removeItem(TOKEN_KEY);
+    setToken(null);
     router.push('/');
   };
 

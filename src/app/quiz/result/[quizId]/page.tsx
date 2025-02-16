@@ -10,12 +10,12 @@ import {usePathname} from 'next/navigation';
 import {QuizResult} from '@/hooks/useQuizResultQuery';
 import {useFetchQuizQuery} from '@/hooks/useQuizQuery';
 import {QuizData} from '@/types/quiz';
+import {useRecommendedQuizzes} from '@/hooks/useRecommendedQuizzes';
 
 export default function QuizResultPage() {
   const pathname = usePathname();
   const quizId = Number(pathname.split('/').pop());
 
-  // 두 쿼리를 동시에 가져오도록 수정
   const {
     data: quizDataFetch,
     error: quizDataError,
@@ -23,7 +23,6 @@ export default function QuizResultPage() {
   } = useFetchQuizQuery(quizId);
   const {data, error, isLoading} = useQuizResultQuery(quizId);
 
-  // 로딩 상태 통합
   if (isLoading || quizDataLoading)
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -31,7 +30,6 @@ export default function QuizResultPage() {
       </div>
     );
 
-  // 에러 상태 통합
   if (error || quizDataError)
     return (
       <div className="flex flex-col items-center justify-center min-h-screen">
@@ -46,6 +44,7 @@ export default function QuizResultPage() {
 
   const quizResult: QuizResult = data;
   const {quizResponse, similarQuizzes, myRanking, rankings} = quizDataFetch;
+  const quizThumbnail = quizResponse.thumbnail;
 
   console.log(quizResponse);
 
@@ -54,9 +53,9 @@ export default function QuizResultPage() {
       <div className="flex items-start gap-12">
         {/* 퀴즈 이미지 */}
         <div className="w-[400px] h-[400px] rounded-2xl overflow-hidden">
-          {quizResponse.imageUrl ? (
+          {quizThumbnail ? (
             <Image
-              src={quizResponse.imageUrl}
+              src={quizThumbnail}
               alt="퀴즈 이미지"
               width={400}
               height={400}

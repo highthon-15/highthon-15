@@ -9,6 +9,7 @@ export function Header() {
 
   useEffect(() => {
     const token = localStorage.getItem(TOKEN_KEY);
+    setToken(null);
     setToken(token);
   }, []);
 

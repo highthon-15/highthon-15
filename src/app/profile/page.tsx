@@ -8,52 +8,43 @@ import { UserProfile, CreatedQuiz, QuizHistory } from '@/types/user';
 // 임시 데이터
 const mockProfile: UserProfile = {
   id: '1',
-  name: '나현진',
-  nickname: '케이크러버',
-  email: 'cake@gmail.com',
-  createdAt: '2024-01-01',
+  name: '유지민',
+  nickname: '유지민',
+  email: 'example@gmail.com',
+  createdAt: '2025-02-16',
   role: 'USER',
 };
 
 const mockCreatedQuizzes: CreatedQuiz[] = [
   {
-    id: '1',
-    title: '케이크 퀴즈',
-    category: '음식',
-    rating: 4.8,
-    participantCount: 3723,
-    thumbnailUrl: '/images/cake.jpg',
-    createdAt: '2024-02-15',
+    id: '7',
+    title: '뉴진스 팜국어 모의고사',
+    category: 'IDOL',
+    rating: 4.3,
+    participantCount: 2,
+    thumbnailUrl: 'https://cnqnq6x1162u.objectstorage.ap-seoul-1.oci.customer-oci.com/p/4d_DJXYmI0ejd8avuhAILIIpyZqnmHvpQPxB3i9g9MKd65-abwpaD-tq-jraNd1k/n/cnqnq6x1162u/b/machugi-image/o/81d0ac25-7a36-4031-8efa-293408d6c610.jpeg',
+    createdAt: '2025-02-16',
   },
   {
-    id: '2',
-    title: '과자 퀴즈',
-    category: '음식',
-    rating: 4.5,
-    participantCount: 1234,
-    thumbnailUrl: '/images/snack.jpg',
-    createdAt: '2024-02-10',
+    id: '8',
+    title: '맹구고사 (살짝업데)',
+    category: 'SPORT',
+    rating: 3.9,
+    participantCount: 2,
+    thumbnailUrl: 'https://cnqnq6x1162u.objectstorage.ap-seoul-1.oci.customer-oci.com/p/4d_DJXYmI0ejd8avuhAILIIpyZqnmHvpQPxB3i9g9MKd65-abwpaD-tq-jraNd1k/n/cnqnq6x1162u/b/machugi-image/o/f7c07b89-b1c1-4c33-95d2-7cd155a3654e.jpeg',
+    createdAt: '2025-02-16',
   },
 ];
 
 const mockHistories: QuizHistory[] = [
   {
     quizId: '1',
-    quizTitle: '케이크 퀴즈',
-    score: '10/10',
-    time: '00:40:97',
-    rank: 3723,
-    thumbnailUrl: '/images/cake.jpg',
-    completedAt: '2024-02-15',
-  },
-  {
-    quizId: '2',
-    quizTitle: '과자 퀴즈',
-    score: '9/10',
-    time: '00:35:21',
-    rank: 234,
-    thumbnailUrl: '/images/snack.jpg',
-    completedAt: '2024-02-10',
+    quizTitle: '삼성라이온즈 선수 맞추기 上',
+    score: '5/10',
+    time: '00:12:01',
+    rank: 13,
+    thumbnailUrl: 'https://cnqnq6x1162u.objectstorage.ap-seoul-1.oci.customer-oci.com/p/4d_DJXYmI0ejd8avuhAILIIpyZqnmHvpQPxB3i9g9MKd65-abwpaD-tq-jraNd1k/n/cnqnq6x1162u/b/machugi-image/o/99bfe2ed-6ff8-4d26-a61c-bf63078b70a8.jpeg',
+    completedAt: '2025-02-16',
   },
 ];
 
