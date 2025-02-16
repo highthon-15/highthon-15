@@ -10,7 +10,7 @@ const mockProfile: UserProfile = {
   id: '1',
   name: '유지민',
   nickname: '유지민',
-  email: 'example@gmail.com',
+  email: 'a01040987587@@gmail.com',
   createdAt: '2025-02-16',
   role: 'USER',
 };
