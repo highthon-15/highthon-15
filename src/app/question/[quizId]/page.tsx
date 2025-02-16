@@ -57,27 +57,28 @@ export default function Page() {
     setUserAnswers(updatedAnswers);
   };
 
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex + 1 < (questions?.length || 0)) {
-      setCurrentQuestionIndex(prev => prev + 1);
-    } else {
-      handleSubmitAll();
-    }
-  };
-
   useEffect(() => {
-    if (questions && currentQuestionIndex === questions.length) {
+    if (questions && currentQuestionIndex === questions.length - 1) {
       handleSubmitAll();
     }
   }, [currentQuestionIndex, questions]);
 
+  const handleNextQuestion = () => {
+    // 입력이 없으면 넘어가지 않도록 방어 처리
+    if (!userAnswers[currentQuestionIndex]) return;
+  
+    if (currentQuestionIndex + 1 < (questions?.length || 0)) {
+      setCurrentQuestionIndex(prev => prev + 1); // 올바르게 1씩만 증가하도록 보장
+    }
+  };
+  
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      if (currentQuestionIndex + 1 < (questions?.length || 0)) {
-        handleNextQuestion();
-      } else {
-        handleSubmitAll();
-      }
+      // 입력이 없으면 넘어가지 않도록 방어 처리
+      if (!userAnswers[currentQuestionIndex]) return;
+  
+      // 엔터가 눌렸을 때, 한 번만 `handleNextQuestion`을 호출하도록 설정
+      handleNextQuestion();
     }
   };
 

@@ -42,7 +42,7 @@ const mockHistories: QuizHistory[] = [
     quizTitle: '삼성라이온즈 선수 맞추기 上',
     score: '5/10',
     time: '00:12:01',
-    rank: 13,
+    rank: 22,
     thumbnailUrl: 'https://cnqnq6x1162u.objectstorage.ap-seoul-1.oci.customer-oci.com/p/4d_DJXYmI0ejd8avuhAILIIpyZqnmHvpQPxB3i9g9MKd65-abwpaD-tq-jraNd1k/n/cnqnq6x1162u/b/machugi-image/o/99bfe2ed-6ff8-4d26-a61c-bf63078b70a8.jpeg',
     completedAt: '2025-02-16',
   },
